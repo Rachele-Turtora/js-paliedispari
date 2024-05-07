@@ -1,8 +1,17 @@
 "use strict";
 
 // Asking the user
-const userChoice = prompt("Scegli pari o dispari");
-const userNumber = prompt("Scegli un numero da 1 a 5");
+let userChoice;
+let userNumber;
+
+while (userChoice !== "pari" && userChoice !== "dispari"){
+    userChoice = prompt("Scegli pari o dispari").toLowerCase();
+}
+
+while (isNaN(Number(userNumber)) || Number(userNumber) < 1 || Number(userNumber) > 5){
+    userNumber = prompt("Scegli un numero da 1 a 5");
+
+}
 
 // Generating random computer number
 function getRndInteger(min, max) {
