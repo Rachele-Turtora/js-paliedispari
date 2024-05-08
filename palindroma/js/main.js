@@ -3,8 +3,20 @@
 // Asking the user a word
 const word = prompt("Inserisci una parola");
 
+// Printing the answer
+if (isPalindroma(word)){
+    console.log(`"${word}" è palindroma`);
+} else {
+    console.log(`"${word}" non è palindroma`);
+}
+
+isPalindroma(word)
+
 // Checking if the word is a palindrome
-function palindroma(myWord){
+function isPalindroma(myWord){
+
+    if (myWord.length === 0) return false;
+    if (myWord.length === 1) return true;
 
     // Checking if the string is a phrase and converting to lowercase
     let wordToCheck;
@@ -14,17 +26,21 @@ function palindroma(myWord){
         wordToCheck = myWord.toLowerCase();
     }
 
-    const reverseWord = wordToCheck.split('').reverse().join(''); // trasformo la stringa in array, lo inverto e lo ritrasformo in stringa
-    if (reverseWord == wordToCheck){
-        return `"${myWord}" è palindroma`;
-    } else {
-        return `"${myWord}" non è palindroma`;
+    /*let reverseWord = "";
+    for (let i = myWord.length - 1; i >= 0; i--){
+        reverseWord += myWord[i];
+    }*/
+
+    let start = 0;
+    let end = wordToCheck.length - 1;
+
+    while(start < end){
+        if (wordToCheck[start] !== wordToCheck[end]){
+            return false;
+        }
+        start++;
+        end--;
     }
+    return true
 }
 
-// Printing the answer if the word is not a number
-if (isNaN(Number(word))){
-    console.log(palindroma(word));
-} else {
-    console.log("Inserisci una stringa, non un numero");
-}
